@@ -29,7 +29,7 @@ class Comment(models.Model):
 
 
 class PostView(models.Model):
-    """ Indica cuantas vistas ha tenido el post """
+    """ Indica cuantas vistas tiene el post """
 
     # user = models.ForeignKey()
     # para referencia del post al cual se hacen las visualizaciones
