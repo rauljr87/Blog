@@ -44,7 +44,7 @@ class Comment(models.Model):
 class PostView(models.Model):
     """ Indica cuantas vistas tiene el post """
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE())
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # para referencia del post al cual se hacen las visualizaciones
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -56,7 +56,7 @@ class PostView(models.Model):
 class Like(models.Model):
     """ Indica cuantos likes tiene un post """
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE())
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # para referencia del post al cual se hacen los likes
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
