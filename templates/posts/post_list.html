@@ -3,20 +3,23 @@
 
 {% block content %}
 <div class="container">
+    <div class="row">
     {% for object in object_list %}
-        <!-- {{ object.title }} -->
-        <a href="#">
-        <div class="card" style="width: 18rem;">
-            <!-- object.thumbnail.url, obtenemos la url estática de la imagen del post -->
-            <img src="{{ object.thumbnail.url }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ object.title }}</h5>
-                <!-- truncatechars para indicar cuantos caracteres de contenido a mostrar -->
-                <p class="card-text">{{ object.content|truncatechars:40 }}</p>
-
-            </div>
+        <div class="col-4">
+            <!-- {{ object.title }} -->
+            <a href="#">
+                <div class="card" style="width: 18rem;">
+                    <!-- object.thumbnail.url, obtenemos la url estática de la imagen del post -->
+                    <img src="{{ object.thumbnail.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ object.title }}</h5>
+                        <!-- truncatechars para indicar cuantos caracteres de contenido a mostrar -->
+                        <p class="card-text">{{ object.content|truncatechars:40 }}</p>
+                    </div>
+                </div>
+            </a>
         </div>
-        </a>
     {% endfor %}
+    </div>
 </div>
 {% endblock content %}
