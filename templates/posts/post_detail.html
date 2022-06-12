@@ -1,6 +1,11 @@
 <!-- Herencia de base.html -->
 {% extends "base.html" %}
 
+
+<!-- Implementando crispyforms -->
+{% load crispy_forms_tags %}
+
+
 {% block content %}
 <!--
 <div class="container">
@@ -49,7 +54,8 @@
                     <!-- formulario para comentario -->
                     <form method="POST">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        <!--{{ form.as_p }}-->
+                        {{ form|crispy }}
                         <button class="btn btn-primary" type="submit">Comment</button>
                     </form>
 
