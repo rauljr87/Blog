@@ -23,6 +23,7 @@ class PostCreateView(CreateView):
         'slug'
     )
 
+
 class PostUpdateView(UpdateView):
     model = Post
     # lista de campos que tiene el modelo Post a actualizar
