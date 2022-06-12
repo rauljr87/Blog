@@ -1,0 +1,64 @@
+from django.db import models
+# Usuario de autenticación, importamos usuario base
+from django.contrib.auth.models import AbstractUser
+
+
+class User(AbstractUser):
+    """ Usuario de autenticación
+     AbstractUser se encarga de username, password, email """
+    pass
+
+    def __str__(self):
+        return self.username
+
+
+# Indicar a django que estamos usando nuestro modelo allauth, especificarlo en settings
+
+
+class Post(models.Model):
+    """ Campos para los Posts """
+
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    thumbnail = models.ImageField()
+    publish_date = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+
+class Comment(models.Model):
+    """ Campos para los comentarios """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.user.username
+
+
+class PostView(models.Model):
+    """ Indica cuantas vistas tiene el post """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # para referencia del post al cual se hacen las visualizaciones
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
+
+
+class Like(models.Model):
+    """ Indica cuantos likes tiene un post """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # para referencia del post al cual se hacen los likes
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
