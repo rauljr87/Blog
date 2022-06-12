@@ -38,6 +38,24 @@ class Post(models.Model):
             'slug': self.slug
         })
 
+    # para contar los comments
+    @property
+    def get_comment_count(self):
+        # query de comentarios
+        return self.comment_set.all().count()
+
+    # para contar las views
+    @property
+    def get_view_count(self):
+        # query de comentarios
+        return self.postview_set.all().count()
+
+    # para contar los likes
+    @property
+    def get_like_count(self):
+        # query de comentarios
+        return self.like_set.all().count()
+
 
 class Comment(models.Model):
     """ Campos para los comentarios """
