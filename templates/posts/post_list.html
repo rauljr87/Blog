@@ -7,13 +7,15 @@
     {% for object in object_list %}
         <div class="col-4">
             <!-- {{ object.title }} -->
-            <!-- se pasa el get_absolute_url definido en modelo Post -->
-            <a href="{{ object.get_absolute_url }}">
+
                 <div class="card" style="width: 18rem;">
                     <!-- object.thumbnail.url, obtenemos la url estática de la imagen del post -->
                     <img src="{{ object.thumbnail.url }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{ object.title }}</h5>
+                        <!-- se pasa el get_absolute_url definido en modelo Post -->
+                        <a href="{{ object.get_absolute_url }}">
+                            <h5 class="card-title">{{ object.title }}</h5>
+                        </a>
                         <!-- truncatechars para indicar cuantos caracteres de contenido a mostrar -->
                         <p class="card-text">{{ object.content|truncatechars:40 }}</p>
                         <hr/>
@@ -27,7 +29,7 @@
                         </p>
                     </div>
                 </div>
-            </a>
+
         </div>
     {% endfor %}
     </div>
