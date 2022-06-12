@@ -12,7 +12,7 @@ class User(AbstractUser):
         return self.username
 
 
-# Indica a django que estamos usando nuestro modelo allauth, específicarlo en settings
+# Indicar a django que estamos usando nuestro modelo allauth, especificarlo en settings
 
 
 class Post(models.Model):

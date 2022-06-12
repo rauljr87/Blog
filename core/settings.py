@@ -2,11 +2,9 @@ import os
 from pathlib import Path
 import environ
 
-
 # ENVIRON
 env = environ.Env()
 environ.Env.read_env()
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -85,7 +82,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -105,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -116,7 +111,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -133,7 +127,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 # django-allauth
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -143,3 +136,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+
+# Especificar dónde se encuentra nuestro allauth user models
+# de posts hacemos referencia al modelo User
+AUTH_USER_MODEL = 'posts.User'
