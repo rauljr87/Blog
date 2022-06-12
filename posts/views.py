@@ -18,6 +18,14 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(UpdateView):
     model = Post
+    # lista de campos que tiene el modelo Post
+    fields = (
+        'title',
+        'content',
+        'thumbnail',
+        'author',
+        'slug'
+    )
 
 
 class PostDeleteView(DeleteView):
