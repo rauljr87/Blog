@@ -32,14 +32,14 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        """ Para retornar a view detail
+        """ Obtiene url y retorna a view detail
         Pasamos esta función en nuestro post_list.html """
         return reverse("detail", kwargs={
             'slug': self.slug
         })
 
     def get_like_url(self):
-        """ Para retornar a view detail
+        """ Obtiene número de likes y retorna a view detail
         Pasamos esta función en nuestro post_list.html """
         return reverse("like", kwargs={
             'slug': self.slug
