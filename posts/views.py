@@ -13,6 +13,14 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
+    def get_object(self, **kwargs):
+        object = super().get_object(**kwargs)
+        # en caso de usuarios anónimos
+        if self.request.user.is_authenticated:
+            PostView.objects.get_or_create(user=self.request.user, post=object)
+
+        return object
+
 
 class PostCreateView(CreateView):
     # PostForm
@@ -75,11 +83,13 @@ class PostDeleteView(DeleteView):
 def like(request, slug):
     """ conteo de likes """
     post = get_object_or_404(Post, slug=slug)
-    # queryset
-    like_qs = Like.objects.filter(user=request.user, post=post)
-    if like_qs.exists():
-        like_qs[0].delete()
-        return redirect('detail', slug=slug)
-    Like.objects.create(user=request.user, post=post)
+    # en caso de usuarios anónimos
+    if request.user.is_authenticated:
+        # queryset
+        like_qs = Like.objects.filter(user=request.user, post=post)
+        if like_qs.exists():
+            like_qs[0].delete()
+            return redirect('detail', slug=slug)
+        Like.objects.create(user=request.user, post=post)
     return redirect('detail', slug=slug)
 

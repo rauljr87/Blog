@@ -38,6 +38,13 @@ class Post(models.Model):
             'slug': self.slug
         })
 
+    def get_like_url(self):
+        """ Para retornar a view detail
+        Pasamos esta función en nuestro post_list.html """
+        return reverse("like", kwargs={
+            'slug': self.slug
+        })
+
     # para contar los comments
     @property
     def get_comment_count(self):
