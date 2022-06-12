@@ -32,6 +32,7 @@ class PostCreateView(CreateView):
         """ pasar datos de contexto """
 
         context = super().get_context_data(**kwargs)
+        # actualiza variable view_type de post_form.html
         context.update({
             'view_type': 'create'
         })
@@ -56,6 +57,7 @@ class PostUpdateView(UpdateView):
         """ pasar datos de contexto """
 
         context = super().get_context_data(**kwargs)
+        # actualiza variable view_type de post_form.html
         context.update({
             'view_type': 'update'
         })
