@@ -7,7 +7,8 @@
     {% for object in object_list %}
         <div class="col-4">
             <!-- {{ object.title }} -->
-            <a href="#">
+            <!-- se pasa el get_absolute_url definido en modelo Post -->
+            <a href="{{ object.get_absolute_url }}">
                 <div class="card" style="width: 18rem;">
                     <!-- object.thumbnail.url, obtenemos la url estática de la imagen del post -->
                     <img src="{{ object.thumbnail.url }}" class="card-img-top" alt="...">

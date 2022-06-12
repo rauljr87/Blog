@@ -1,6 +1,7 @@
 from django.db import models
-# Usuario de autenticación, importamos usuario base
+# Usuario de autenticación, importamos usuario base AbstracUser
 from django.contrib.auth.models import AbstractUser
+from django.shortcuts import reverse
 
 
 class User(AbstractUser):
@@ -29,6 +30,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        """ Para retornar a view detail
+        Pasamos esta función en nuestro post_list.html """
+        return reverse("detail", kwargs={
+            'slug': self.slug
+        })
 
 
 class Comment(models.Model):
