@@ -45,6 +45,11 @@ class Post(models.Model):
             'slug': self.slug
         })
 
+    # define los comments para poder mostrarlos a través del template
+    @property
+    def comments(self):
+        return self.comment_set.all()
+    
     # para contar los comments
     @property
     def get_comment_count(self):
