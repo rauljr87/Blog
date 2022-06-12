@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Comment, PostView, Like
 # class form, se los debe especificar en los modelos de PostCreateView y PostUpdateView
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 
 
 class PostListView(ListView):
@@ -12,6 +12,24 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+    def post(self, *args, **kwargs):
+        """ Funcionalidad de comentarios """
+        form = CommentForm(self.request.POST)
+        if form.is_valid():
+            post = self.get_object()
+            comment = form.instance
+            comment.user = self.request.user
+            comment.post = post
+            comment.save()
+            return redirect("detail", slug=post.slug)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'form': CommentForm
+        })
+        return context
 
     def get_object(self, **kwargs):
         object = super().get_object(**kwargs)
@@ -27,6 +45,7 @@ class PostCreateView(CreateView):
     form_class = PostForm
     model = Post
     success_url = '/'
+
     # lista de campos que tiene el modelo Post para crear
     # al modificar post_form {{ form_type }}, pide eliminar los campos
     # fields = (
@@ -53,6 +72,7 @@ class PostUpdateView(UpdateView):
     form_class = PostForm
     model = Post
     success_url = '/'
+
     # lista de campos que tiene el modelo Post a actualizar
     # al modificar post_form {{ form_type }}, pide eliminar los campos
     # fields = (
@@ -92,4 +112,3 @@ def like(request, slug):
             return redirect('detail', slug=slug)
         Like.objects.create(user=request.user, post=post)
     return redirect('detail', slug=slug)
-
