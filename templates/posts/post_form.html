@@ -3,6 +3,13 @@
 
 {% block content %}
 <div class="container">
-    <h1>Esta es la vista de Update</h1>
+    <h1>Esta es la vista de {{ view_type }} </h1>
+    <!-- formulario -->
+    <form method="POST">
+        {% csrf_token %}
+        <!-- pasar formulario -->
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">{{ view_type }}</button>
+    </form>
 </div>
 {% endblock content %}
