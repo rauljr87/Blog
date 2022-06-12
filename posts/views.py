@@ -19,13 +19,14 @@ class PostCreateView(CreateView):
     form_class = PostForm
     model = Post
     # lista de campos que tiene el modelo Post para crear
-    fields = (
-        'title',
-        'content',
-        'thumbnail',
-        'author',
-        'slug'
-    )
+    # al modificar post_form {{ form_type }}, pide eliminar los campos
+    # fields = (
+    #    'title',
+    #    'content',
+    #    'thumbnail',
+    #    'author',
+    #    'slug'
+    # )
 
 
 class PostUpdateView(UpdateView):
@@ -33,13 +34,14 @@ class PostUpdateView(UpdateView):
     form_class = PostForm
     model = Post
     # lista de campos que tiene el modelo Post a actualizar
-    fields = (
-        'title',
-        'content',
-        'thumbnail',
-        'author',
-        'slug'
-    )
+    # al modificar post_form {{ form_type }}, pide eliminar los campos
+    # fields = (
+    #    'title',
+    #    'content',
+    #    'thumbnail',
+    #    'author',
+    #    'slug'
+    #)
 
 
 class PostDeleteView(DeleteView):
