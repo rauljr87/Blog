@@ -16,16 +16,23 @@
                         <a href="{{ object.get_absolute_url }}">
                             <h5 class="card-title">{{ object.title }}</h5>
                         </a>
+
                         <!-- truncatechars para indicar cuantos caracteres de contenido a mostrar -->
                         <p class="card-text">{{ object.content|truncatechars:40 }}</p>
+
                         <hr/>
+                        <!-- para ver cantidad de visualizaciones, likes y comments -->
+                        <!-- fontawesome/start.com , para kitcode -->
+                        <!-- se definen funciones en modelo de Post -->
                         <p>
-                            <!-- para ver cantidad de visualizaciones, likes y comments -->
-                            <!-- fontawesome/start.com , para kitcode -->
-                            <!-- se definen funciones en modelo de Post -->
-                            <span><i class="fas fa-thumbs-up"></i>{{ object.get_view_count }}</span>
-                            <span><i class="fas fa-eye"></i>i>{{ object.get_like_count }}</span>
-                            <span><i class="fas fa-comments"></i>{{ object.get_comment_count }}</span>
+                            <span><i class="fas fa-thumbs-up ml-2"></i>{{ object.get_like_count }}</span>
+                            <span><i class="fas fa-eye ml-2"></i>{{ object.get_view_count }}</span>
+                            <span><i class="fas fa-comments ml-2"></i>{{ object.get_comment_count }}</span>
+                        </p>
+
+                        <!-- visualizar cuando ha sido publicado y actualizado -->
+                        <p class="card-text">
+                            Posted {{ object.publish_date|timesince }} ago
                         </p>
                     </div>
                 </div>
