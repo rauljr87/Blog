@@ -141,4 +141,5 @@ SITE_ID = 1
 # de posts hacemos referencia al modelo User
 # para evitar errores eliminar las migraciones y la base de datos sqlite
 # realizar una nueva migración
+# crear nuevamente el superuser
 AUTH_USER_MODEL = 'posts.User'
