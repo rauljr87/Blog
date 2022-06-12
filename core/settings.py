@@ -139,4 +139,6 @@ SITE_ID = 1
 
 # Especificar dónde se encuentra nuestro allauth user models
 # de posts hacemos referencia al modelo User
+# para evitar errores eliminar las migraciones y la base de datos sqlite
+# realizar una nueva migración
 AUTH_USER_MODEL = 'posts.User'
