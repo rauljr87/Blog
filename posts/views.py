@@ -1,5 +1,5 @@
 # Vistas basadas en clases
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Comment, PostView, Like
 # class form, se los debe especificar en los modelos de PostCreateView y PostUpdateView
@@ -70,3 +70,16 @@ class PostDeleteView(DeleteView):
     model = Post
     # redirecciona al mismo view que estamos viendo el listado de post = página principal
     success_url = '/'
+
+
+def like(request, slug):
+    """ conteo de likes """
+    post = get_object_or_404(Post, slug=slug)
+    # queryset
+    like_qs = Like.objects.filter(user=request.user, post=post)
+    if like_qs.exists():
+        like_qs[0].delete()
+        return redirect('detail', slug=slug)
+    Like.objects.create(user=request.user, post=post)
+    return redirect('detail', slug=slug)
+
