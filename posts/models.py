@@ -1,4 +1,15 @@
 from django.db import models
+# Usuario de autenticación, importamos usuario base
+from django.contrib.auth.models import AbstractUser
+
+
+class User(AbstractUser):
+    """ Usuario de autenticación
+     AbstractUser se encarga de username, password, email """
+    pass
+
+    def __str__(self):
+        return self.username
 
 
 class Post(models.Model):
