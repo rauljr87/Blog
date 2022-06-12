@@ -40,6 +40,40 @@
                     <!-- funcionalidad para like -->
                     {{ object.get_like_count }}
                 </a>
+
+                <hr/>
+
+                {% if request.user.is_authenticated %}
+                    <h4>Leave a comment below</h4>
+
+                    <!-- formulario para comentario -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-primary" type="submit">Comment</button>
+                    </form>
+
+                    <hr/>
+
+                    <h5>Comments</h5>
+
+                    <!-- mostrar los comentarios hechos -->
+                    {% for comment in object.comments %}
+                        <div>
+                            <p>
+                                {{ comment.content }}
+                                <br/>
+                                <small>
+                                    {{ comment.timestamp|timesince }} ago
+                                </small>
+                            </p>
+                        </div>
+
+                        <hr/>
+                    {% endfor %}
+                {% else %}
+                <a href="{% url 'account_login' %}" class="btn btn-primary btn-block">Login to comment</a>
+                {% endif %}
             </div>
 
         </div>
