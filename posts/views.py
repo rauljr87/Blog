@@ -2,6 +2,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Comment, PostView, Like
+# class form, se los debe especificar en los modelos de PostCreateView
+from .forms import PostForm
 
 
 class PostListView(ListView):
@@ -13,6 +15,8 @@ class PostDetailView(DetailView):
 
 
 class PostCreateView(CreateView):
+    # PostForm
+    form_class = PostForm
     model = Post
     # lista de campos que tiene el modelo Post para crear
     fields = (
