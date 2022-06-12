@@ -18,6 +18,7 @@ class PostCreateView(CreateView):
     # PostForm
     form_class = PostForm
     model = Post
+    success_url = '/'
     # lista de campos que tiene el modelo Post para crear
     # al modificar post_form {{ form_type }}, pide eliminar los campos
     # fields = (
@@ -43,6 +44,7 @@ class PostUpdateView(UpdateView):
     # PostForm
     form_class = PostForm
     model = Post
+    success_url = '/'
     # lista de campos que tiene el modelo Post a actualizar
     # al modificar post_form {{ form_type }}, pide eliminar los campos
     # fields = (
