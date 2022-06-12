@@ -14,6 +14,7 @@ from posts.views import (
 )
 
 
+# slug para cualquier nombre que se le de a la página del blog
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),

@@ -24,7 +24,7 @@ class Post(models.Model):
     publish_date = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    # campo para trabajar con el slug de la url
+    # campo para trabajar con el slug de las url
     slug = models.SlugField()
 
     def __str__(self):
