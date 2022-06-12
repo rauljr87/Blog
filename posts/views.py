@@ -30,3 +30,5 @@ class PostUpdateView(UpdateView):
 
 class PostDeleteView(DeleteView):
     model = Post
+    # redirecciona al mismo view que estamos viendo el listado de post = página principal
+    success_url = '/'

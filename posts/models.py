@@ -16,7 +16,7 @@ class User(AbstractUser):
 
 
 class Post(models.Model):
-    """ Campos para los Posts """
+    """ Campos para el Post """
 
     title = models.CharField(max_length=100)
     content = models.TextField()
