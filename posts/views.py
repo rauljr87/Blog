@@ -28,6 +28,15 @@ class PostCreateView(CreateView):
     #    'slug'
     # )
 
+    def get_context_data(self, **kwargs):
+        """ pasar datos de contexto """
+
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'view_type': 'create'
+        })
+        return context
+
 
 class PostUpdateView(UpdateView):
     # PostForm
@@ -41,7 +50,16 @@ class PostUpdateView(UpdateView):
     #    'thumbnail',
     #    'author',
     #    'slug'
-    #)
+    # )
+
+    def get_context_data(self, **kwargs):
+        """ pasar datos de contexto """
+
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'view_type': 'update'
+        })
+        return context
 
 
 class PostDeleteView(DeleteView):
