@@ -14,11 +14,18 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView):
     model = Post
-
+    # lista de campos que tiene el modelo Post para crear
+    fields = (
+        'title',
+        'content',
+        'thumbnail',
+        'author',
+        'slug'
+    )
 
 class PostUpdateView(UpdateView):
     model = Post
-    # lista de campos que tiene el modelo Post
+    # lista de campos que tiene el modelo Post a actualizar
     fields = (
         'title',
         'content',
