@@ -20,9 +20,10 @@
                         <p>
                             <!-- para ver cantidad de visualizaciones, likes y comments -->
                             <!-- fontawesome/start.com , para kitcode -->
-                            <span>view count</span>
-                            <span>like count</span>
-                            <span>comment count</span>
+                            <!-- se definen funciones en modelo de Post -->
+                            <span>{{ object.get_view_count }}</span>
+                            <span>{{ object.get_like_count }}</span>
+                            <span>{{ object.get_comment_count }}</span>
                         </p>
                     </div>
                 </div>
