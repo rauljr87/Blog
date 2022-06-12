@@ -12,6 +12,9 @@ class User(AbstractUser):
         return self.username
 
 
+# Indica a django que estamos usando nuestro modelo allauth, específicarlo en settings
+
+
 class Post(models.Model):
     """ Campos para los Posts """
 
@@ -20,8 +23,7 @@ class Post(models.Model):
     thumbnail = models.ImageField()
     publish_date = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
-
-    # author = models.ForeignKey()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -30,7 +32,7 @@ class Post(models.Model):
 class Comment(models.Model):
     """ Campos para los comentarios """
 
-    # user = models.ForeignKey()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
@@ -42,7 +44,7 @@ class Comment(models.Model):
 class PostView(models.Model):
     """ Indica cuantas vistas tiene el post """
 
-    # user = models.ForeignKey()
+    user = models.ForeignKey(User, on_delete=models.CASCADE())
     # para referencia del post al cual se hacen las visualizaciones
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -54,7 +56,7 @@ class PostView(models.Model):
 class Like(models.Model):
     """ Indica cuantos likes tiene un post """
 
-    # user = models.ForeignKey()
+    user = models.ForeignKey(User, on_delete=models.CASCADE())
     # para referencia del post al cual se hacen los likes
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
