@@ -1,0 +1,13 @@
+<!-- Herencia de base.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+     <h1>Seguro deseas borrar esto?</h1>
+    <!-- creación de formulario para eliminar post -->
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">Confirm</button>
+    </form>
+</div>
+{% endblock content %}

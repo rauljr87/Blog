@@ -1,6 +1,7 @@
 from django.db import models
-# Usuario de autenticación, importamos usuario base
+# Usuario de autenticación, importamos usuario base AbstracUser
 from django.contrib.auth.models import AbstractUser
+from django.shortcuts import reverse
 
 
 class User(AbstractUser):
@@ -16,7 +17,7 @@ class User(AbstractUser):
 
 
 class Post(models.Model):
-    """ Campos para los Posts """
+    """ Campos para el Post """
 
     title = models.CharField(max_length=100)
     content = models.TextField()
@@ -24,9 +25,48 @@ class Post(models.Model):
     publish_date = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # campo para trabajar con el slug de las url, nombre para la página
+    slug = models.SlugField()
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        """ Obtiene url y retorna a view detail
+        Pasamos esta función en nuestro post_list.html """
+        return reverse("detail", kwargs={
+            'slug': self.slug
+        })
+
+    def get_like_url(self):
+        """ Obtiene número de likes y retorna a view detail
+        Pasamos esta función en nuestro post_list.html """
+        return reverse("like", kwargs={
+            'slug': self.slug
+        })
+
+    # define los comments para poder mostrarlos a través del template
+    @property
+    def comments(self):
+        return self.comment_set.all()
+
+    # para contar los comments
+    @property
+    def get_comment_count(self):
+        # query de comentarios
+        return self.comment_set.all().count()
+
+    # para contar las views
+    @property
+    def get_view_count(self):
+        # query de comentarios
+        return self.postview_set.all().count()
+
+    # para contar los likes
+    @property
+    def get_like_count(self):
+        # query de comentarios
+        return self.like_set.all().count()
 
 
 class Comment(models.Model):
